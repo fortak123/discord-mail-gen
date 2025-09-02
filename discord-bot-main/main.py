@@ -15,13 +15,13 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-bot = commands.Bot(command_prefix="/", intents=intents)
+bot = commands.Bot(command_prefix="?", intents=intents)
 
 # Role & cooldowny
 NORMAL_ROLE = "normal"
 PREMIUM_ROLE = "premium"
 
-COOLDOWN_NORMAL = 10 * 60   # 10 minut
+COOLDOWN_NORMAL = 15   # 10 minut
 COOLDOWN_PREMIUM = 1 * 60  # 1 minuta
 
 # ==== AUTOMATICKÉ NAČTENÍ SLUŽEB Z DATA SLOŽKY ====
