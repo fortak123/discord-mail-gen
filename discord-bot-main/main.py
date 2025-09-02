@@ -111,7 +111,7 @@ async def gen(ctx, service: str = None):
         return
 
     try:
-        await ctx.author.send(f"🎁 Tvoje údaje pro {service}: `{code}`")
+        await ctx.author.send(f"🎁 Tvoje údaje pro {service}(URL:LOGIN:PASS): `{code}`")
         await ctx.send("✅ Kód ti byl poslán do DM.")
         last_used[ctx.author.id] = now
     except discord.Forbidden:
