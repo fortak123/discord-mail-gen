@@ -21,7 +21,7 @@ bot = commands.Bot(command_prefix="?", intents=intents)
 NORMAL_ROLE = "normal"
 PREMIUM_ROLE = "premium"
 
-COOLDOWN_NORMAL = 3 * 60 
+COOLDOWN_NORMAL = 1 * 60 
 
 # ==== AUTOMATICKÉ NAČTENÍ SLUŽEB Z DATA SLOŽKY ====
 BASE_DIR = "data"
