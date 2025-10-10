@@ -22,6 +22,7 @@ NORMAL_ROLE = "normal"
 PREMIUM_ROLE = "premium"
 
 COOLDOWN_NORMAL = 1 * 60 
+COOLDOWN_PREMIUM = 1 * 60
 
 # ==== AUTOMATICKÉ NAČTENÍ SLUŽEB Z DATA SLOŽKY ====
 BASE_DIR = "data"
