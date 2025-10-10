@@ -75,14 +75,14 @@ async def on_ready():
 @bot.command()
 async def services(ctx):
     if SERVICES:
-        await ctx.send("🔧 Dostupné služby: " + ", ".join(SERVICES.keys()))
+        await ctx.send("🔧 Available services: " + ", ".join(SERVICES.keys()))
     else:
-        await ctx.send("⚠️ Žádné služby nebyly nalezeny.")
+        await ctx.send("⚠️ No services found.")
 
 
 @bot.command()
 async def stock(ctx):
-    msg = "**📦 Zásoby:**\n"
+    msg = "**📦 Stock:**\n"
     for service, path in SERVICES.items():
         msg += f"{service}: {count_lines(path)}\n"
     await ctx.send(msg)
@@ -91,14 +91,14 @@ async def stock(ctx):
 @bot.command()
 async def gen(ctx, service: str = None):
     if not service or service.lower() not in SERVICES:
-        await ctx.send("❌ Neznámá služba. Použij `!services`.")
+        await ctx.send("❌ Unknown service. Use `!services`.")
         return
 
     cooldown = get_cooldown_for(ctx.author)
     now = time.monotonic()
     if ctx.author.id in last_used and now - last_used[ctx.author.id] < cooldown:
         wait = int(cooldown - (now - last_used[ctx.author.id]))
-        await ctx.send(f"⏳ Počkej {wait} sekund.")
+        await ctx.send(f"⏳ Wait {wait} seconds.")
         return
 
     path = SERVICES[service.lower()]
@@ -106,15 +106,15 @@ async def gen(ctx, service: str = None):
         code = await pop_first_line(path)
 
     if not code:
-        await ctx.send("⚠️ Žádné údaje nezbyly.")
+        await ctx.send("⚠️ No logins left.")
         return
 
     try:
-        await ctx.author.send(f"🎁 Tvoje údaje pro {service}(URL:LOGIN:PASS): `{code}`")
-        await ctx.send("✅ Kód ti byl poslán do DM.")
+        await ctx.author.send(f"🎁 Your details for {service}: `{code}`")
+        await ctx.send("✅ The code has been sent to your DM.")
         last_used[ctx.author.id] = now
     except discord.Forbidden:
-        await ctx.send("⚠️ Nemohl jsem poslat DM. Zapni si zprávy od členů serveru.")
+        await ctx.send("⚠️ I couldn't send a DM. Turn on messages from server members.")
 
 
 # ==== Keep alive pro Replit / 24/7 ====
