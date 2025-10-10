@@ -84,7 +84,7 @@ async def services(ctx):
 async def stock(ctx):
     msg = "**📦 Stock:**\n"
     for service, path in SERVICES.items():
-        msg += f"{service}: {count_lines(path)}\n"
+        msg += f"{service}:-- {count_lines(path)}\n"
     await ctx.send(msg)
 
 
